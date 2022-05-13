@@ -2,7 +2,7 @@ import styles from "./styles.module.css";
 import { Link } from "react-router-dom";
 const Main = () => {
   const handleLogout = () => {
-    localStorage.removeItem("token");
+    localStorage.removeItem("user");
     window.location.reload();
   };
 
@@ -11,10 +11,10 @@ const Main = () => {
       <nav className={styles.navbar}>
         <h1>admin</h1>
         <Link to="/signup">
-          <button type="button" className={styles.white_btn}>
-            register
-          </button>
-        </Link>
+      <button type="button" className={styles.white_btn}>
+        register
+      </button>
+    </Link>
         <button className={styles.white_btn} onClick={handleLogout}>
           Logout
         </button>

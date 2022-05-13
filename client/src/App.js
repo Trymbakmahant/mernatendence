@@ -4,12 +4,21 @@ import Signup from "./components/Singup";
 import Login from "./components/Login";
 
 function App() {
-  const user = localStorage.getItem("token");
+  const User = JSON.parse(localStorage.getItem("user"));
+  // user&&console.log(user); 
 
+
+  
   return (
     <Routes>
-      {user && <Route path="/" exact element={<Main />} />}
-      {user && <Route path="/signup" exact element={<Signup />} />}
+      {User && <Route path="/" exact element={<Main />} />}
+      {User === "admin"&& (
+        <Route path="/signup" exact element={<Signup />} />
+      )}
+      {User === "employee"&& (
+        <Route path="/signup" element={<Navigate replace to="/" />} />
+      )}
+      {/* <Whatstherole/> */}
       <Route path="/signup" element={<Navigate replace to="/login" />} />
       <Route path="/login" exact element={<Login />} />
       <Route path="/" element={<Navigate replace to="/login" />} />
