@@ -2,7 +2,8 @@ import { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./styles.module.css";
-
+import React, { Component } from "react";
+import QRCode from "react-qr-code";
 const Signup = () => {
   const [data, setData] = useState({
     firstName: "",
@@ -10,6 +11,8 @@ const Signup = () => {
     email: "",
     password: "",
   });
+
+  const [value, setValue] = useState({});
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
@@ -22,7 +25,9 @@ const Signup = () => {
     try {
       const url = "http://localhost:8080/api/users";
       const { data: res } = await axios.post(url, data);
-      navigate("/login");
+
+      setValue(res.message);
+      //   navigate("/login");
       console.log(res.message);
     } catch (error) {
       if (
@@ -34,11 +39,13 @@ const Signup = () => {
       }
     }
   };
- 
 
-  
   return (
     <div className={styles.signup_container}>
+      <div className="md-6">
+        {" "}
+        {value && value.firstName && <QRCode value={value._id} />}
+      </div>
       <div className={styles.signup_form_container}>
         {/* <div className={styles.left}>
 					<h1>Welcome Back</h1>

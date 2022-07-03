@@ -1,0 +1,9 @@
+.qr {
+  width: 500px;
+  height: 500px;
+
+  margin: auto;
+  width: 50%;
+  border: 3px solid rgb(19, 134, 216);
+  padding: 10px;
+}
