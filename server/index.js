@@ -6,6 +6,7 @@ const connection = require("./db");
 const userRoutes = require("./routes/users");
 const authRoutes = require("./routes/auth");
 const employeeRoutes = require("./routes/employees");
+const scanRoutes = require("./routes/scan");
 // database connection
 connection();
 
@@ -14,6 +15,7 @@ app.use(express.json());
 app.use(cors());
 
 // routes
+app.use("/api/scan/", scanRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/employees", employeeRoutes);

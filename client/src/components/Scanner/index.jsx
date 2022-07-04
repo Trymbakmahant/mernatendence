@@ -14,7 +14,7 @@ const Scan = () => {
 
   const attendence = async () => {
     try {
-      const url = "http://localhost:8080/api/employee";
+      const url = "http://localhost:8080/api/scan";
 
       const { res: data } = await axios.post(url, id);
       //  console.log(res.message);
