@@ -17,7 +17,7 @@ const Scan = () => {
       const url = "http://localhost:8080/api/scan";
 
       const { res: data } = await axios.post(url, id);
-      //  console.log(res.message);
+      console.log("res.message");
     } catch (err) {
       console.log(err);
     }
