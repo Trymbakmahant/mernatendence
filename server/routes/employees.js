@@ -12,6 +12,15 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.get("/me", async (req, res) => {
+  try {
+    const me = await User.findOne().populate("_id");
+    return res.json(me);
+  } catch (err) {
+    console.error(err);
+  }
+});
+
 // router.get("/:id", (req, res) => {
 //   console.log(req.params.id);
 // });
