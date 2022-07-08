@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^13.5.0",
     "antd": "^4.21.4",
     "axios": "^0.24.0",
+    "bootstrap": "^5.1.3",
     "nodemon": "^2.0.18",
     "package-name": "^0.1.0",
     "react": "^17.0.2",

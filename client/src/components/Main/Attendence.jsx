@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { Component } from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { List } from "antd";
 //import renderHTML from "react-render-html";
 const Employee = () => {
@@ -15,18 +15,6 @@ const Employee = () => {
     } catch (err) {
       console.log(err);
     }
-    // const checkin = async () => {
-    //   try {
-    //     const url = "http://localhost:8080/api/checkin";
-    //     const { data } = await axios.post(url);
-
-    //     //  console.log(data);
-    //   } catch (err) {
-    //     console.log(err);
-    //   }
-
-    //   //  console.log(res.data);
-    // };
   };
 
   const printName = (x) => {

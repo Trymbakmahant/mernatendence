@@ -6,6 +6,7 @@ router.route("/").get((req, res) => {
   User.findOne({ id })
     .then((object) => res.send(object))
     .catch((err) => res.status(400).json("Error :" + err));
+  console.log(res.json);
 });
 
 module.exports = router;

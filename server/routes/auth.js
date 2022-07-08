@@ -6,6 +6,7 @@ const Joi = require("joi");
 router.post("/", async (req, res) => {
   try {
     const { error } = validate(req.body);
+
     if (error)
       return res.status(400).send({ message: error.details[0].message });
 
@@ -20,9 +21,9 @@ router.post("/", async (req, res) => {
     if (!validPassword)
       return res.status(401).send({ message: "Invalid Email or Password" });
 
-    const token = user.generateAuthToken();
-    const userRole  = user.role ;
- 
+    // const token = User.generateAuthToken();
+    const userRole = user.role;
+
     res.status(200).send({ data: userRole, message: "logged in successfully" });
   } catch (error) {
     res.status(500).send({ message: "Internal Server Error" });
