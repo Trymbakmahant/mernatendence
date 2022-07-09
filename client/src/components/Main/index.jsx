@@ -16,7 +16,6 @@ const Main = () => {
       const url = "http://localhost:8080/api/employees/me";
       const { data } = await axios.get(url);
       setObjectID(data._id);
-      console.log(data._id);
     } catch (err) {
       console.log(err);
     }

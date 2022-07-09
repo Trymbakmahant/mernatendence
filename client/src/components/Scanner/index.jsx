@@ -4,19 +4,25 @@ import styles from "./styles.module.css";
 
 import axios from "axios";
 const Scan = () => {
-  const [id, setid] = useState("");
+  // const [id, setid] = useState({
+  //   id: "",
+  // });
 
-  useEffect(() => {
-    if (id != null) {
-      attendence();
-    }
-  }, []);
+  const id = { id: "" };
 
-  const attendence = async () => {
+  // useEffect(() => {
+  //   if (id != null) {
+  //     attendence();
+  //   }
+  // }, []);
+
+  const marked = async () => {
     try {
-      const url = "http://localhost:8080/api/scan";
+      console.log("lhweohf");
+      const url = "http://localhost:8080/api/users/scan";
 
       const { res: data } = await axios.post(url, id);
+      console.log();
       console.log("res.message");
     } catch (err) {
       console.log(err);
@@ -32,16 +38,23 @@ const Scan = () => {
           className={styles.qr}
           onResult={(result, error) => {
             if (!!result) {
-              setid(result?.text);
+              // id.id = result?.text;
+              id.id = result?.text;
+              alert(" attendance is submitted successfully");
             }
-            // this is for nothing
+
             if (!!error) {
               console.info(error);
             }
           }}
           // style={{ height:"100px", width: }}
         />
-        <p className={styles.p}>{id}</p>
+        {/* <p className={styles.p}>{id}</p> */}
+        <button type="button" className="btn btn-primary" onClick={marked}>
+          {" "}
+          click
+        </button>{" "}
+        <h3>it for attendence</h3>
       </div>
     </>
   );

@@ -1,6 +1,9 @@
 const router = require("express").Router();
 const { User, validate } = require("../models/user");
 const bcrypt = require("bcrypt");
+const express = require("express");
+router.use(express.json());
+router.use(express.urlencoded({ extended: true }));
 
 router.post("/", async (req, res) => {
   try {
@@ -26,6 +29,17 @@ router.post("/", async (req, res) => {
     res.status(201).send({ message: UserId }); //message: "User created successfully"
   } catch (error) {
     res.status(500).send({ message: "Internal Server Error" });
+  }
+});
+
+router.post("/scan", (req, res) => {
+  try {
+    const attendance = User.findOne({ _id: req.body.id });
+    if (attendance) {
+      console.log(attendance);
+    }
+  } catch (error) {
+    console.log(error);
   }
 });
 
