@@ -1,19 +1,10 @@
 const mongoose = require("mongoose");
 
-const Schema = mongoose.Schema;
+const attendance = new mongoose.Schema({
+  taskname: { type: String, required: true },
+  date: { type: String, required: true },
+  
+});
 
-const AttendanceSchema = new Schema(
-  {
-    objectID: {
-      type: "String",
-      required: true,
-    },
-    check: { type: "String", required: true },
-  },
-
-  { timestamp: true }
-);
-
-const Attendance = mongoose.model("Attendacne", AttendanceSchema);
-
+const Attendance = mongoose.model("Attendance", attendance);
 module.exports = Attendance;

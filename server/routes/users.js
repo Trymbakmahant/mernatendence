@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const { User, validate } = require("../models/user");
+const { Attendance } = require("../models/attendance");
 const bcrypt = require("bcrypt");
 const express = require("express");
 router.use(express.json());
@@ -32,12 +33,28 @@ router.post("/", async (req, res) => {
   }
 });
 
-router.post("/scan", (req, res) => {
+router.post("/scan", async (req, res) => {
   try {
-    const attendance = User.findOne({ _id: req.body.id });
-    if (attendance) {
-      console.log(attendance);
+    console.log(req.body);
+    const ObjectId = req.body.id;
+    const date = new Date(Date.now()).toISOString();
+    // const attendance = await User.findOne({ _id: req.body.id });
+    const check = await User.findOne({ _id: req.body.id });
+
+    if (check) {
+      const attendance = await new Attendance({
+        objectId: ObjectId,
+
+        Date: date,
+      });
+
+      attendance
+        .save()
+        .then(() => res.json("done"))
+        .catch((err) => res.status(400).json(err));
     }
+
+    res.json(attendance);
   } catch (error) {
     console.log(error);
   }

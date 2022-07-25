@@ -7,8 +7,12 @@ const Scan = () => {
   // const [id, setid] = useState({
   //   id: "",
   // });
+  let date = new Date();
+  let day = date.getDate();
+  let month = date.getMonth() + 1;
+  let year = date.getFullYear();
 
-  const id = { id: "" };
+  const id = { id: "", check: "", Date: "" };
 
   // useEffect(() => {
   //   if (id != null) {
@@ -17,8 +21,10 @@ const Scan = () => {
   // }, []);
 
   const marked = async () => {
+    console.log(id.id);
     try {
-      console.log("lhweohf");
+      let fullDate = `${day}.${month}.${year}.`;
+      id.Date = fullDate;
       const url = "http://localhost:8080/api/users/scan";
 
       const { res: data } = await axios.post(url, id);
@@ -51,9 +57,11 @@ const Scan = () => {
         />
         {/* <p className={styles.p}>{id}</p> */}
         <button type="button" className="btn btn-primary" onClick={marked}>
-          {" "}
-          click
-        </button>{" "}
+          click in {(id.check = "checkin")}
+        </button>
+        <button type="button" className="btn btn-primary" onClick={marked}>
+          click out {(id.check = "checkout")}
+        </button>
         <h3>it for attendence</h3>
       </div>
     </>

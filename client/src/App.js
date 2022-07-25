@@ -1,5 +1,6 @@
 import { Route, Routes, Navigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.min.js";
 import Main from "./components/Main";
 import Signup from "./components/Singup";
 import Login from "./components/Login";
