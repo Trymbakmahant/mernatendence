@@ -9,18 +9,9 @@ const Main = () => {
   //   localStorage.removeItem("user");
   //   window.location.reload();
   // };
-  const [objectID, setObjectID] = useState("");
+  const objectID = JSON.parse(localStorage.getItem("id"));
 
-  const qrcode = async () => {
-    try {
-      const url = "http://localhost:8080/api/employees/me";
-      const { data } = await axios.get(url);
-      setObjectID(data._id);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-  qrcode();
+     
   // useEffect(async () => {
   //   try {
   //     const url = "http://localhost:8080/api/employees";

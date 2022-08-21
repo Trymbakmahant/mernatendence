@@ -6,27 +6,22 @@ import axios from "axios";
 const Scan = () => {
   // const [id, setid] = useState({
   //   id: "",
-  // });
+  // }); 
+  const [idis , setidis] = useState("");
   let date = new Date();
   let day = date.getDate();
   let month = date.getMonth() + 1;
   let year = date.getFullYear();
 
-  const id = { id: "", check: "", Date: "" };
-
-  // useEffect(() => {
-  //   if (id != null) {
-  //     attendence();
-  //   }
-  // }, []);
-
-  const marked = async () => {
+  const id = { id: idis, check: "", Date: "" };
+  const marked = async (check) => {
+    id.check = check ; 
     console.log(id.id);
     try {
       let fullDate = `${day}.${month}.${year}.`;
       id.Date = fullDate;
-      const url = "http://localhost:8080/api/users/scan";
-
+      const url = "http://localhost:8080/api/scan";
+  //627d095dc4dcc567fbb5d20d
       const { res: data } = await axios.post(url, id);
       console.log();
       console.log("res.message");
@@ -34,10 +29,19 @@ const Scan = () => {
       console.log(err);
     }
   };
+
+ useEffect(() => {
+    
+    if (id.id != null) {
+      marked();
+      id.id = null;
+    }
+  }, [id.id ]);
+
   return (
     <>
       <center>
-        <h1>Attendence</h1>
+        <h1>Attendence</h1> 
       </center>
       <div className={styles.cont}>
         <QrReader
@@ -45,8 +49,9 @@ const Scan = () => {
           onResult={(result, error) => {
             if (!!result) {
               // id.id = result?.text;
-              id.id = result?.text;
-              alert(" attendance is submitted successfully");
+              id.id = result?.text; 
+              setidis(result?.text ) ; 
+              
             }
 
             if (!!error) {
@@ -56,13 +61,13 @@ const Scan = () => {
           // style={{ height:"100px", width: }}
         />
         {/* <p className={styles.p}>{id}</p> */}
-        <button type="button" className="btn btn-primary" onClick={marked}>
-          click in {(id.check = "checkin")}
+        {/* <button type="button" className="btn btn-primary" onClick={marked("in")}>
+             check in 
         </button>
-        <button type="button" className="btn btn-primary" onClick={marked}>
-          click out {(id.check = "checkout")}
-        </button>
-        <h3>it for attendence</h3>
+        <button type="button" className="btn btn-primary" onClick={marked("out")}>
+           check out
+        </button> */}
+        <h3>{idis} </h3>
       </div>
     </>
   );

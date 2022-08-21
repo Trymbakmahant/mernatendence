@@ -10,7 +10,7 @@ import Navebar from "./components/navbar";
 function App() {
   const User = JSON.parse(localStorage.getItem("user"));
   // user&&console.log(user);
-
+ 
   return (
     <main>
       <Navebar />
