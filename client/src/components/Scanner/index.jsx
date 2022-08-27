@@ -8,23 +8,26 @@ const Scan = () => {
   //   id: "",
   // }); 
   const [idis , setidis] = useState("");
-  let date = new Date();
-  let day = date.getDate();
-  let month = date.getMonth() + 1;
-  let year = date.getFullYear();
+  // let date = new Date();
+  // let day = date.getDate();
+  // let month = date.getMonth() + 1;
+  // let year = date.getFullYear();
 
-  const id = { id: idis, check: "", Date: "" };
-  const marked = async (check) => {
-    id.check = check ; 
+  const id = { id: idis,  date: "" };
+  const marked = async () => {
+    
     console.log(id.id);
     try {
-      let fullDate = `${day}.${month}.${year}.`;
-      id.Date = fullDate;
+      
+      id.date =   new Date(Date.now()).toISOString();
+      
       const url = "http://localhost:8080/api/scan";
   //627d095dc4dcc567fbb5d20d
-      const { res: data } = await axios.post(url, id);
-      console.log();
-      console.log("res.message");
+      const { } = await axios.post(url, id);
+      
+      
+      setidis("")
+      
     } catch (err) {
       console.log(err);
     }
@@ -32,11 +35,11 @@ const Scan = () => {
 
  useEffect(() => {
     
-    if (id.id != null) {
+    if (idis !== "") {
       marked();
-      id.id = null;
+      
     }
-  }, [id.id ]);
+  }, [idis ]);
 
   return (
     <>
